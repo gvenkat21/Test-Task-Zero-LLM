@@ -1,0 +1,162 @@
+,,,,,
+,input_dict,transformed_dict,prompt,python_code,
+,"input_dict = {‘PolicyDate': ['2023-05-09', '2023-05-02', '2023-05-06'],
+ 'Name': ['Jackson', 'Smith', 'Martinez'],
+ 'PlanType': [' Frank', ' Jane', ' Carol'],
+ 'Policy_ID': ['BronzePackage', 'SilverPackage', 'BronzePackage'],
+ 'PremiumAmount': ['QR17171', 'CD67890', 'KL14141'],
+ 'Hobby': ['Writing', 'Reading', 'Swimming'],
+ 'MaritalStatus': ['Divorced', 'Single', 'Divorced'],
+ 'StartDate': ['2023-05-09', '2023-05-02', '2023-05-06'],
+ 'Employee_Name': ['Frank Jackson', 'Jane Smith', 'Carol Martinez'],
+ 'Plan_Name': ['Bronze', 'Silver', 'Bronze'],
+ 'PolicyID': ['QR17171', 'CD67890', 'KL14141'],
+ 'Cost': [50, 100, 50]}","template_dict = {'Date': ['09-05-2023', '02-05-2023', '06-05-2023'],
+ 'EmployeeName': ['Frank Jackson', 'Jane Smith', 'Carol Martinez'],
+ 'Plan': ['Bronze', 'Silver', 'Bronze'],
+ 'PolicyNumber': ['QR17171', 'CD67890', 'KL14141'],
+ 'Premium': [50, 100, 50]}","input_dict = {‘PolicyDate': ['2023-05-09', '2023-05-02', '2023-05-06'],
+ 'Name': ['Jackson', 'Smith', 'Martinez'],
+ 'PlanType': [' Frank', ' Jane', ' Carol'],
+ 'Policy_ID': ['BronzePackage', 'SilverPackage', 'BronzePackage'],
+ 'PremiumAmount': ['QR17171', 'CD67890', 'KL14141'],
+ 'Hobby': ['Writing', 'Reading', 'Swimming'],
+ 'MaritalStatus': ['Divorced', 'Single', 'Divorced'],
+ 'StartDate': ['2023-05-09', '2023-05-02', '2023-05-06'],
+ 'Employee_Name': ['Frank Jackson', 'Jane Smith', 'Carol Martinez'],
+ 'Plan_Name': ['Bronze', 'Silver', 'Bronze'],
+ 'PolicyID': ['QR17171', 'CD67890', 'KL14141'],
+ 'Cost': [50, 100, 50]}template_dict = {'Date': ['09-05-2023', '02-05-2023', '06-05-2023'],
+ 'EmployeeName': ['Frank Jackson', 'Jane Smith', 'Carol Martinez'],
+ 'Plan': ['Bronze', 'Silver', 'Bronze'],
+ 'PolicyNumber': ['QR17171', 'CD67890', 'KL14141'],
+ 'Premium': [50, 100, 50]}
+->","# Extract the data from the input_dict
+policy_date = input_dict['PolicyDate']
+name = input_dict['Employee_Name']
+plan_name = input_dict['Plan_Name']
+policy_id = input_dict['PolicyID']
+cost = input_dict['Cost']
+
+# Convert the date from the format of 'YYYY-MM-DD' to the format of 'DD-MM-YYYY'
+converted_date = [date.split('-')[2] + '-' + date.split('-')[1] + '-' + date.split('-')[0] for date in policy_date]
+
+# Split the name into the first name and the last name
+split_name = [name.split(' ') for name in name]
+
+# Store the data in the template_dict
+template_dict['Date'] = converted_date
+template_dict['EmployeeName'] = split_name
+template_dict['Plan'] = plan_name
+template_dict['PolicyNumber'] = policy_id
+template_dict['Premium'] = cost",
+,"input_dict = {'PolicyDate': ['2023-07-15', '2023-07-10', '2023-07-20'],
+    'Employee_Name': ['John Doe', 'Sarah Lee', 'Michael Brown'],
+    'Plan_Name': ['Gold', 'Silver', 'Bronze'],
+    'PolicyID': ['AB12345', 'XY98765', 'QR24680'],
+    'Cost': [200, 150, 100],
+    'Code': ['JX5678', 'SA9876', 'MD1234']
+}","template_dict = {
+    'Date': ['15-07-2023', '10-07-2023', '20-07-2023'],
+    'EmployeeName': [['John', 'Doe'], ['Sarah', 'Lee'], ['Michael', 'Brown']],
+    'Plan': ['Gold', 'Silver', 'Bronze'],
+    'PolicyNumber': ['AB12345', 'XY98765', 'QR24680'],
+    'Premium': [200, 150, 100],
+    'Code': ['JX5678', 'SA9876', 'MD1234']
+}","input_dict = {'PolicyDate': ['2023-07-15', '2023-07-10', '2023-07-20'],
+    'Employee_Name': ['John Doe', 'Sarah Lee', 'Michael Brown'],
+    'Plan_Name': ['Gold', 'Silver', 'Bronze'],
+    'PolicyID': ['AB12345', 'XY98765', 'QR24680'],
+    'Cost': [200, 150, 100],
+    'Code': ['JX5678', 'SA9876', 'MD1234']
+}template_dict = {
+    'Date': ['15-07-2023', '10-07-2023', '20-07-2023'],
+    'EmployeeName': [['John', 'Doe'], ['Sarah', 'Lee'], ['Michael', 'Brown']],
+    'Plan': ['Gold', 'Silver', 'Bronze'],
+    'PolicyNumber': ['AB12345', 'XY98765', 'QR24680'],
+    'Premium': [200, 150, 100],
+    'Code': ['JX5678', 'SA9876', 'MD1234']
+}->","def transform_data(input_dict):
+    # Initialize the output dictionary
+    template_dict = {}
+
+    # Extract the data from the input_dict
+    policy_date = input_dict['PolicyDate']
+    employee_name = input_dict['Employee_Name']
+    plan_name = input_dict['Plan_Name']
+    policy_id = input_dict['PolicyID']
+    cost = input_dict['Cost']
+    code = input_dict['Code']
+
+    # Convert the date from the format of 'YYYY-MM-DD' to the format of 'DD-MM-YYYY'
+    converted_date = [date.split('-')[2] + '-' + date.split('-')[1] + '-' + date.split('-')[0] for date in policy_date]
+
+    # Split the name into the first name and the last name
+    split_name = [name.split(' ') for name in employee_name]
+
+    # Store the data in the template_dict
+    template_dict['Date'] = converted_date
+    template_dict['EmployeeName'] = split_name
+    template_dict['Plan'] = plan_name
+    template_dict['PolicyNumber'] = policy_id
+    template_dict['Premium'] = cost
+    template_dict['Code'] = code
+
+    return template_dict",
+,"input_dict = {
+    'PolicyDate': ['2023-11-30', '2023-11-25', '2023-11-20'],
+    'Employee_Name': ['David Smith', 'Emily Green', 'Robert White'],
+    'Plan_Name': ['Bronze', 'Silver', 'Gold'],
+    'PolicyID': ['JK99999', 'LM77777', 'OP55555'],
+    'Cost': [120, 180, 250],
+    'Code': ['QT6789', 'LA5432', 'VB1111']
+}","template_dict = {
+    'Date': ['30-11-2023', '25-11-2023', '20-11-2023'],
+    'EmployeeName': [['David', 'Smith'], ['Emily', 'Green'], ['Robert', 'White']],
+    'Plan': ['Bronze', 'Silver', 'Gold'],
+    'PolicyNumber': ['JK99999', 'LM77777', 'OP55555'],
+    'Premium': [120, 180, 250],
+    'Code': ['QT6789', 'LA5432', 'VB1111']
+}","input_dict = {
+    'PolicyDate': ['2023-11-30', '2023-11-25', '2023-11-20'],
+    'Employee_Name': ['David Smith', 'Emily Green', 'Robert White'],
+    'Plan_Name': ['Bronze', 'Silver', 'Gold'],
+    'PolicyID': ['JK99999', 'LM77777', 'OP55555'],
+    'Cost': [120, 180, 250],
+    'Code': ['QT6789', 'LA5432', 'VB1111']
+}
+template_dict = {
+    'Date': ['30-11-2023', '25-11-2023', '20-11-2023'],
+    'EmployeeName': [['David', 'Smith'], ['Emily', 'Green'], ['Robert', 'White']],
+    'Plan': ['Bronze', 'Silver', 'Gold'],
+    'PolicyNumber': ['JK99999', 'LM77777', 'OP55555'],
+    'Premium': [120, 180, 250],
+    'Code': ['QT6789', 'LA5432', 'VB1111']
+}
+->","def transform_data(input_dict):
+    # Initialize the output dictionary
+    template_dict = {}
+
+    # Extract the data from the input_dict
+    policy_date = input_dict['PolicyDate']
+    employee_name = input_dict['Employee_Name']
+    plan_name = input_dict['Plan_Name']
+    policy_id = input_dict['PolicyID']
+    cost = input_dict['Cost']
+    code = input_dict['Code']
+
+    # Convert the date from the format of 'YYYY-MM-DD' to the format of 'DD-MM-YYYY'
+    converted_date = [date.split('-')[2] + '-' + date.split('-')[1] + '-' + date.split('-')[0] for date in policy_date]
+
+    # Split the name into the first name and the last name
+    split_name = [name.split(' ') for name in employee_name]
+
+    # Store the data in the template_dict
+    template_dict['Date'] = converted_date
+    template_dict['EmployeeName'] = split_name
+    template_dict['Plan'] = plan_name
+    template_dict['PolicyNumber'] = policy_id
+    template_dict['Premium'] = cost
+    template_dict['Code'] = code
+
+    return template_dict",
